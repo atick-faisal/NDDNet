@@ -1,0 +1,3 @@
+control4 2 300 90000
+control4.let 212 3000 12 0 -315 -14632 0 left-foot
+control4.rit 212 3000 12 0 -32768 18401 0 right-foot

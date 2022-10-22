@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8>
+
+<title>Gait Dynamics in Neuro-Degenerative Disease Data Base</title>
+<link rel="stylesheet" href="https://s3.amazonaws.com/physionet-pds/css/shop-item.css" type="text/css" media="print">
+<link rel="stylesheet" href="https://s3.amazonaws.com/physionet-pds/css/bootstrap.min.css" type="text/css" media="print">
+
+<link rel="stylesheet" href="https://physionet.org/pn/print.css" type="text/css" media="print">
+<link rel="stylesheet" href="https://physionet.org/pn/css/physionet.css" media="all"><style type="text/css">
+#toc, #doi { margin-right: 1em; }#toc, #doi { background: #ecf3ff; border: solid 2px #222 }
+.sf-menu > li > a { background: #dfe9ff; }
+h1, h2, h3 { color: #222; background: #dfe9ff }</style>
+<!-- scripts from Rich Callogero, May 2016 -->
+
+<script src="https://s3.amazonaws.com/physionet-pds/js/bootstrap.min.js"></script>
+<script src="https://s3.amazonaws.com/physionet-pds/js/list.js"></script>
+
+<script src="https://physionet.org/pn/js/jquery-1.11.3.min.js"></script>
+<script src="https://physionet.org/pn/js/hoverIntent.js"></script>
+<script src="https://physionet.org/pn/js/superfish.min.js"></script>
+<!--<script src="https://physionet.org/pn/js/debug.js"></script>-->
+<script src="https://physionet.org/pn/js/accessible-superfish.js"></script>
+<script src="https://physionet.org/pn/js/physionet.js"></script>
+<!-- -->
+<script type="text/javascript" src="https://physionet.org/pn/js/jquery.tableofcontents.min.js"></script>
+<script type="text/javascript">
+  var loc = window.location.pathname;
+  var dir = loc.substring(0, loc.lastIndexOf('/'));
+  dir = dir + '/';
+  dir = dir.slice(15, dir.length);
+  var S3BL_IGNORE_PATH = true;
+  var BUCKET_URL = 'https://physionet-pds.s3.amazonaws.com';
+  //var BUCKET_URL = 'https://s3.amazonaws.com/';
+  var S3B_ROOT_DIR = dir; //'PhysioBank/apnea-ecg/';
+  $(function(){
+    //$("#NavBar").load("/physionet-pds/PhysioBank/NavBar.html");
+    //$("#Footer").load("/physionet-pds/PhysioBank/Footer.html");
+  });
+</script>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('ul.sf-menu').superfish({ autoArrows: false });
+    if ($('h2').length) {
+      $('#tocwrapper').append('<ul id="toc"></ul>');
+      $('#toc').tableOfContents(null, { startLevel: 2 });
+    }});
+</script>
+<!--#if expr="$MATHCONFIG"-->
+<!-- <script type="text/javascript" src="/pn4/js/mathjax/MathJax.js?config=< ! - -#echo var="MATHCONFIG" - - >"></script>-->
+<!--#endif-->
+</head>
+
+<body>
+
+  <header class="banner">
+    <a class="hide" href="#content">Skip to content</a>
+    <div style="width: 100%; position: absolute; top: 0;  z-index: 1; background-color: #222; min-width: 700px; padding: 0;">
+      <div class="topmenu" style="float: left; padding: 0.5em 2em 0.5em 0.5em;">
+	<!--	  <ul class="sf-menu sf-shadow sf-arrows"  >--><!--< ! - - #include virtual="https://physionet.org/pn/menu.shtml" -  - > -->
+	<!--	  </ul>-->
+      </div> <div style="float: left; padding: 0.6em 0 0 10em; margin: 0;">
+  <a style="color:#9d9d9d;" href="/physionet-pds/index.html"><span class="glyphicon glyphicon-home"> Home</span></a>
+    </div>
+    <div style="float: right; padding: 0.6em 10em 0 0; margin: 0;">
+    <a style="color:#9d9d9d;" href="https://Physionet.org"><span class="glyphicon glyphicon-transfer"> Our Website</span></a>
+    </div>
+
+
+    <div class="pbanner"><!-- pbanner is set to display: none -->
+      from <b>PhysioNet</b>, the research resource for complex physiologic signals
+    </div>
+    <div  style="width: 100%; min-width: 700px; margin:  0 0 2.7em 0; background-color: transparent; padding: 0;">
+      <!-- provides space above h1 header, so it isn't hidden by banner -->
+      <div id="top"><!-- need nested div to link to top lands in right place --></div>      
+    </div>
+
+  </header>
+
+    <main><h1 style="margin-top: 1.75em; padding-top: .4em;">Gait Dynamics in Neuro-Degenerative Disease Data Base</h1><nav id="tocwrapper" style="padding: 1.5em 0 0 0; float: right;"> <!-- id to position toc added by KP, 6 July 2015 -->
+        </nav>
+    <!--#include virtual="https://physionet.org/cgi-bin/doicheck?uri=${REQUEST_URI}&title=$TITLE"-->
+    <a id="content" ></a>
+    <article id="page"><!-- added by KP, 12 June 2015 -->
+
+
+<p>
+Neuro-degenerative disease often affects gait and mobility.  To understand
+better the pathophysiology of these diseases and to improve our ability to
+measure responses to therapeutic interventions, it may be helpful to
+quantify gait dynamics accurately.  The records in this database are from
+patients with <a href="http://www.parkinson.org/" target="other">Parkinson's
+disease</a> (n = 15), <a href="http://www.hdfoundation.org/"
+target="other">Huntington's disease</a> (n = 20), or <a
+href="http://www.alsa.org/" target="other">amyotrophic lateral sclerosis</a> (n
+= 13).  Records from 16 healthy control subjects are also included here.</p>
+
+<p>
+The raw data were obtained using force-sensitive resistors, with the
+output roughly proportional to the force under the foot. 
+Stride-to-stride measures of footfall contact times were derived from these
+signals, as illustrated below.  (Click <a href="example-ts.ps">here</a> for a
+PostScript version of this figure.)</p>
+
+<div class="outer2"><div class="inner2">
+<img src=example-ts.png alt="[Examples of Gait Time Series]" width="505">
+</div></div>
+
+<p>
+Each of the 64 records is identified by the name of the subject group
+(<tt>hunt</tt>, <tt>park</tt>, <tt>als</tt>, or <tt>control</tt>) followed by
+an arbitrary ID number.  The four files associated with each record have names
+beginning with the record name, and suffixes indicating the type and contents
+of the file:</p>
+
+<div class="edbtable">
+<table> <tr><th>Suffix</th><th>Contents</th></tr>
+<tr><td><tt>.hea</tt></td>
+    <td><a href="https://physionet.org/physiotools/dbag/header-5.htm">Header</a> (text)</td></tr>
+<tr><td><tt>.let</tt></td><td>Left foot signal (binary)</td></tr>
+<tr><td><tt>.rit</tt></td><td>Right foot signal (binary)</td></tr>
+<tr><td><tt>.ts</tt></td><td>Derived time series (text)</td></tr>
+</table>
+</div>
+
+<p>Within the time series (<tt>.ts</tt>) files, the contents are:</p>
+
+<div class="edbtable">
+<table>
+<tr><th>Column</th><th>Contents</th></tr>
+<tr><td>1</td><td>Elapsed Time (sec)</td></tr>
+<tr><td>2</td><td>Left Stride Interval (sec)</td></tr>
+<tr><td>3</td><td>Right Stride Interval (sec)</td></tr>
+<tr><td>4</td><td>Left Swing Interval (sec)</td></tr>
+<tr><td>5</td><td>Right Swing Interval (sec)</td></tr>
+<tr><td>6</td><td>Left Swing Interval (% of stride)</td></tr>
+<tr><td>7</td><td>Right Swing Interval (% of stride)</td></tr>
+<tr><td>8</td><td>Left Stance Interval (sec)</td></tr>
+<tr><td>9</td><td>Right Stance Interval (sec)</td></tr>
+<tr><td>10</td><td>Left Stance Interval (% of stride)</td></tr>
+<tr><td>11</td><td>Right Stance Interval (% of stride)</td></tr>
+<tr><td>12</td><td>Double Support Interval (sec)</td></tr>
+<tr><td>13</td><td>Double Support Interval (% of stride)</td></tr>
+</table>
+</div>
+
+<p>Please note that these time series have not been filtered.</p>
+
+<p>
+A separate file (<a
+href="subject-description.txt"><tt>subject-description.txt</tt></a>, a
+tab-delimited text file) includes clinical information for each
+subject, including age, gender, height, weight, walking speed, and a
+measure of disease severity or duration.  For the subjects with
+Parkinson's disease, this is the Hohn and Yahr score (a higher score
+indicates more advanced disease).  For the subjects with Huntington's
+disease, this is the total functional capacity measure (a lower score
+indicates more advanced functional impairment).  For the subjects with
+amyotrophic lateral sclerosis, the number here is the time in months since the
+diagnosis of the disease.  For the control subjects, an arbitrary 0 is
+used as a place holder.</p>
+
+<h3>Questions for study</h3>
+
+<p>
+We have done some initial analyses of these data sets.  Much, however, is still
+unknown. For example: Are the dynamics of the sub-phases of the stride (e.g.,
+stance and swing) identical to that of the stride itself? What is the effect of
+disease on gait asymmetry?  Are stride dynamics nonlinear?  Does this change
+with disease?</p>
+
+<h3>References</h3>
+
+<p>
+We have reported the association between disease and the dynamics of the stride
+time.  For more information about our analyses of these data files, please see:</p>
+
+<ul>
+<li> Hausdorff JM, Lertratanakul A, Cudkowicz ME, Peterson AL, Kaliton D,
+     Goldberger AL.
+     <a href="http://jap.physiology.org/cgi/content/full/88/6/2045?ijkey=WKwCeA4NUn0rE&keytype=ref&siteid=physiology"
+     target="other">Dynamic markers of altered gait rhythm in amyotrophic
+     lateral sclerosis.</a>
+<!--
+     <a href="http://jap.physiology.org/cgi/content/full/88/6/2045"
+     target="other">Dynamic markers of altered gait rhythm in amyotrophic
+     lateral sclerosis.</a>
+-->
+     <i>J Applied Physiology</i>; <b>88</b>:2045-2053, 2000.</li>
+<li> Hausdorff JM, Mitchell SL, Firtion R, Peng CK, Cudkowicz ME, Wei JY,
+     Goldberger AL.
+     <a href="http://jap.physiology.org/cgi/content/full/82/1/262"
+     target="other">Altered fractal dynamics of gait: reduced stride-interval
+     correlations with aging and Huntington's disease.</a>
+     <i>J Applied Physiology</i>; <b>82</b>:262-269, 1997.</li>
+</ul>
+
+<p>Address for correspondence: <a
+href="mailto:jhausdor@caregroup.harvard.edu">jhausdor@caregroup.harvard.edu</a></p>
+<div class="row">
+                  <div class="col-md-2"></div>
+                  <div class="col-md-8">
+                    <div id="listing"></div>
+                  </div>
+                  <div class="col-md-2"></div>
+                </div>

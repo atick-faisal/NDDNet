@@ -1,0 +1,3 @@
+control10 2 300 90000
+control10.let 212 1000 12 0 115 9515 0 left-foot
+control10.rit 212 1000 12 0 81 10673 0 right-foot
