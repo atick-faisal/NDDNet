@@ -14,7 +14,7 @@ def get_file_and_ids(
     for filename in all_files:
         if filename.find("control") != -1 or filename.find(disease) != -1:
             files.append(filename)
-            subject_ids.append(((filename.split("/"))[-1])[:-4])
+            subject_ids.append(((filename.split(os.sep))[-1])[:-4])
 
     return files, subject_ids
 
@@ -27,7 +27,7 @@ def get_subject_ids(
     all_files = sorted(glob.glob(os.path.join(dataset_dir, "*hea")))
     subject_ids = list(
         map(
-            lambda filename: ((filename.split("/"))[-1])[:-4],
+            lambda filename: ((filename.split(os.sep))[-1])[:-4],
             all_files
         )
     )

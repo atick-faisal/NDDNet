@@ -18,7 +18,8 @@ os.environ['CUDA_VISIBLE_DEVICES'] = "-1"
 
 # ------------------------- CONFIG -----------------------
 
-DATA_DIR = "../data/gaitndd/"
+ROOT_DIR = os.path.normpath(os.getcwd() + os.sep + os.pardir)
+DATA_DIR = os.path.join(ROOT_DIR, "data", "gaitndd")
 
 FS = 300
 N_EPOCHS = 300
@@ -159,4 +160,3 @@ for test_subject in subject_ids:
     # break
 
 metrics.print_metrics()
-

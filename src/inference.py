@@ -22,7 +22,8 @@ os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
 # # Config
 
 # %%
-DATA_DIR = "../data/gaitndd/"
+ROOT_DIR = os.path.normpath(os.getcwd() + os.sep + os.pardir)
+DATA_DIR = os.path.join(ROOT_DIR, "data", "gaitndd")
 
 FS = 300
 N_EPOCHS = 300
@@ -58,9 +59,12 @@ loss = tf.keras.losses.SparseCategoricalCrossentropy(from_logits=False)
 optimizer = tf.keras.optimizers.Adam(learning_rate=LEARNING_RATE)
 
 
+# %% [markdown]
+# # ALS vs HC
+
 # %%
 DISEASE = "als"
-WEIGHT_DIR = os.path.join(f"../weights/{DISEASE}")
+WEIGHT_DIR = os.path.join(ROOT_DIR, "weights", DISEASE)
 
 metrics = PerformanceMetrics()
 subject_ids = get_subject_ids(DATA_DIR, DISEASE)
@@ -88,7 +92,7 @@ metrics.print_metrics()
 
 # %%
 DISEASE = "hunt"
-WEIGHT_DIR = os.path.join(f"../weights/{DISEASE}")
+WEIGHT_DIR = os.path.join(ROOT_DIR, "weights", DISEASE)
 
 metrics = PerformanceMetrics()
 subject_ids = get_subject_ids(DATA_DIR, DISEASE)
@@ -116,7 +120,7 @@ metrics.print_metrics()
 
 # %%
 DISEASE = "park"
-WEIGHT_DIR = os.path.join(f"../weights/{DISEASE}")
+WEIGHT_DIR = os.path.join(ROOT_DIR, "weights", DISEASE)
 
 metrics = PerformanceMetrics()
 subject_ids = get_subject_ids(DATA_DIR, DISEASE)
@@ -144,7 +148,7 @@ metrics.print_metrics()
 
 # %%
 DISEASE = "ndd"
-WEIGHT_DIR = os.path.join(f"../weights/{DISEASE}")
+WEIGHT_DIR = os.path.join(ROOT_DIR, "weights", DISEASE)
 
 metrics = PerformanceMetrics()
 subject_ids = get_subject_ids(DATA_DIR, DISEASE)
@@ -168,6 +172,3 @@ metrics.print_metrics()
 
 
 # %%
-
-
-
