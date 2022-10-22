@@ -2,6 +2,7 @@ import numpy as np
 
 from rich.progress import track
 from numpy.typing import NDArray
+from utils.normalization import normalize
 from utils.preprocessing import preprocess_grf
 
 
@@ -32,7 +33,27 @@ def get_grf_channels(
         segment_r = preprocess_grf(
             grf_signals[start_r: end_r, 1], segment_length)
 
-        _grf_channels = np.dstack([segment_l, segment_r])
+        d_segment_l, _ = normalize(np.gradient(segment_l))
+        dd_segment_l, _ = normalize(np.gradient(d_segment_l))
+        d_segment_r, _ = normalize(np.gradient(segment_r))
+        dd_segment_r, _ = normalize(np.gradient(d_segment_r))
+        i_segment_l, _ = normalize(
+            np.cumsum(segment_l) / np.arange(1, len(segment_l) + 1))
+        i_segment_r, _ = normalize(
+            np.cumsum(segment_r) / np.arange(1, len(segment_r) + 1))
+
+        _grf_channels = np.dstack(
+            [
+                segment_l,
+                segment_r,
+                d_segment_l,
+                d_segment_r,
+                dd_segment_l,
+                dd_segment_r,
+                i_segment_l,
+                i_segment_r
+            ]
+        )
 
         if grf_channels.size == 0:
             grf_channels = _grf_channels

@@ -21,7 +21,7 @@ def get_file_and_ids(
 
 def get_subject_ids(
     dataset_dir: str,
-    disease: Literal["als", "hunt", "park", "all"]
+    disease: Literal["als", "hunt", "park", "ndd"]
 ) -> List[str]:
 
     all_files = sorted(glob.glob(os.path.join(dataset_dir, "*hea")))
@@ -32,7 +32,7 @@ def get_subject_ids(
         )
     )
 
-    if disease == "all":
+    if disease == "ndd":
         return subject_ids
     else:
         return list(

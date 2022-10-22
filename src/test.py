@@ -12,7 +12,7 @@ from sklearn.feature_selection import mutual_info_classif, SelectKBest
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, confusion_matrix
 from utils import get_subject_ids, DataLoader, PerformanceMetrics
-from model import get_stacked_model
+# from models import get_stacked_model
 
 # ... Hide tensorflow grabage messages
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
@@ -27,14 +27,14 @@ SEGMENT_LEN = 512
 N_FEATURES = 15
 N_TRIALS = 7
 VAL_PERCENTAGE = 0.3
-DISEASE = "hunt"
+DISEASE = "als"
 MODE = "gait"
 
-# subject_ids = get_subject_ids(DATA_DIR, DISEASE)
+subject_ids = get_subject_ids(DATA_DIR, DISEASE)
 subject_description = pd.read_csv(
     os.path.join(DATA_DIR, "subject-description.csv"))
-subject_ids = subject_description.loc[subject_description["gender"] == "f", "ID"].to_list()
-subject_ids = list(filter(lambda id: DISEASE in id or "control" in id, subject_ids))
+# subject_ids = subject_description.loc[subject_description["gender"] == "f", "ID"].to_list()
+# subject_ids = list(filter(lambda id: DISEASE in id or "control" in id, subject_ids))
 
 # print(subject_description.loc[subject_description["gender"] == "m", "ID"].to_list())
 # sys.exit(0)
@@ -94,7 +94,7 @@ for test_subject in subject_ids:
         model = tf.keras.Sequential([
             tf.keras.layers.Input(shape=(221, )),
             tf.keras.layers.Dense(32, activation="relu"),
-            tf.keras.layers.Dense(4, activation="softmax"),
+            tf.keras.layers.Dense(2, activation="softmax"),
         ])
 
         loss = tf.keras.losses.SparseCategoricalCrossentropy(from_logits=False)
@@ -135,7 +135,7 @@ for test_subject in subject_ids:
             train_y,
             verbose=0,
             shuffle=True,
-            epochs=11,
+            epochs=7,
             batch_size=64,
             # validation_data=(testing_data, test_y),
             validation_data=(val_x, val_y),

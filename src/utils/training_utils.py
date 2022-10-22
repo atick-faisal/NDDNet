@@ -51,6 +51,8 @@ class DataLoader():
                 label = 3
             else:
                 raise(ValueError("invalid subject id"))
+
+            label = 0 if "control" in subject_id else 1
                 
             self.labels += [label] * _grf_channels.shape[0]
             self.subject_ids += [subject_id] * _grf_channels.shape[0]
