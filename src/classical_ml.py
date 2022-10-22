@@ -11,7 +11,7 @@ from wfdb import rdsamp
 from rich.progress import track
 from sklearn.utils import shuffle
 
-from typing import Tuple, List
+from typing import Literal, Tuple, List
 from numpy.typing import NDArray
 from dataclasses import dataclass
 
@@ -29,7 +29,7 @@ SEGMENT_LEN = 512
 N_FEATURES = 7
 N_TRIALS = 7
 VAL_PERCENTAGE = 0.3
-DISEASE = "hunt"
+DISEASE = "ndd"
 
 
 subject_description = pd.read_csv(
@@ -61,17 +61,27 @@ def normalize(
     return (z_score - scaler.min) / (scaler.max - scaler.min), scaler
 
 
-def get_file_and_ids(disease: str) -> Tuple[List[str], List[str]]:
+def get_subject_ids(
+    disease: Literal["als", "hunt", "park", "ndd"]
+) -> Tuple[List[str], List[str]]:
+
     all_files = sorted(glob.glob(os.path.join(DATA_DIR, "*hea")))
-    files = []
-    subject_ids = []
+    subject_ids = list(
+        map(
+            lambda filename: ((filename.split("/"))[-1])[:-4],
+            all_files
+        )
+    )
 
-    for filename in all_files:
-        if filename.find("control") != -1 or filename.find(disease) != -1:
-            files.append(filename)
-            subject_ids.append(((filename.split("/"))[-1])[:-4])
-
-    return files, subject_ids
+    if disease == "ndd":
+        return subject_ids
+    else:
+        return list(
+            filter(
+                lambda subject_id: "control" in subject_id or disease in subject_id,
+                subject_ids
+            )
+        )
 
 
 def get_demographic_features(subject_description: pd.Series) -> NDArray[np.float32]:
@@ -86,7 +96,6 @@ def get_demographic_features(subject_description: pd.Series) -> NDArray[np.float
 
 def get_train_val_test_sets(
     test_subject: str,
-    data_files: List[str],
     subject_ids: List[str]
 ) -> Tuple[
     NDArray[np.float32],
@@ -105,8 +114,9 @@ def get_train_val_test_sets(
 
     cfg = tsfel.get_features_by_domain("temporal")
 
-    for filename, subject_id in zip(data_files, subject_ids):
-        ts = np.loadtxt(filename[:-4] + ".ts", dtype=np.float32)
+    for subject_id in subject_ids:
+        ts = np.loadtxt(os.path.join(
+            DATA_DIR, subject_id + ".ts"), dtype=np.float32)
         demographics = subject_description[subject_description["ID"]
                                            == subject_id].iloc[0]
 
@@ -123,7 +133,20 @@ def get_train_val_test_sets(
 
         dg_features = get_demographic_features(demographics)
         features = np.concatenate([ts_features, dg_features], axis=0)
-        label = 0 if "control" in subject_id else 1
+        # label = 0 if "control" in subject_id else 1
+
+        label = 0
+
+        if "control" in subject_id:
+            label = 0
+        elif "als" in subject_id:
+            label = 1
+        elif "hunt" in subject_id:
+            label = 2
+        elif "park" in subject_id:
+            label = 3
+        else:
+            raise(ValueError("invalid subject id"))
 
         train_subjects = subject_ids.copy()
         train_subjects.remove(test_subject)
@@ -169,7 +192,7 @@ def get_train_val_test_sets(
     return train_x, train_y, val_x, val_y, test_x, test_y
 
 
-data_files, subject_ids = get_file_and_ids(DISEASE)
+subject_ids = get_subject_ids(DISEASE)
 
 accuracies = []
 
@@ -178,11 +201,10 @@ for test_subject in subject_ids:
     for i in range(N_TRIALS):
         train_x, train_y, _, _, test_x, test_y = get_train_val_test_sets(
             test_subject=test_subject,
-            data_files=data_files,
             subject_ids=subject_ids
         )
 
-        clf = LogisticRegression()
+        clf = RandomForestClassifier()
         clf.fit(train_x, train_y)
         pred_y = clf.predict(test_x)
         acc = accuracy_score(test_y.ravel(), pred_y.ravel())
