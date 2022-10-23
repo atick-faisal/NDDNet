@@ -1,0 +1,3 @@
+hunt5 2 300 90000
+hunt5.let 212 3000 12 0 511 -31101 0 left-foot
+hunt5.rit 212 3000 12 0 -940 -25959 0 right-foot

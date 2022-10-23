@@ -1,0 +1,3 @@
+hunt4 2 300 90000
+hunt4.let 212 1000 12 0 -2046 30637 0 left-foot
+hunt4.rit 212 1000 12 0 -32768 -9854 0 right-foot

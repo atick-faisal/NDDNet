@@ -1,0 +1,3 @@
+control9 2 300 90000
+control9.let 212 3000 12 0 -250 5910 0 left-foot
+control9.rit 212 3000 12 0 79 -30530 0 right-foot

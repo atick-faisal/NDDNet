@@ -1,0 +1,3 @@
+control5 2 300 90000
+control5.let 212 3000 12 0 -934 1456 0 left-foot
+control5.rit 212 3000 12 0 369 -31346 0 right-foot
