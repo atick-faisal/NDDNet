@@ -7,7 +7,7 @@ NDDNet
 <h3 align="center">A Deep Learning Model for Predicting Neurodegenerative Diseases from Gait Pattern</h3>
 
 <p align="center">
-    <a href="https://github.com/atick-faisal/NDDNet/stargazers"><img src="https://img.shields.io/github/stars/atick-faisal/NDDNet?colorA=363a4f&colorB=b7bdf8&style=for-the-badge"></a>
+    <a href="https://github.com/atick-faisal/NDDNet/releases"><img src="https://img.shields.io/github/release/atick-faisal/NDDNet?colorA=363a4f&colorB=b7bdf8&style=for-the-badge"></a>
     <a href="https://github.com/atick-faisal/NDDNet/issues"><img src="https://img.shields.io/github/issues/atick-faisal/NDDNet?colorA=363a4f&colorB=f5a97f&style=for-the-badge"></a>
     <a href="https://github.com/atick-faisal/NDDNet/contributors"><img src="https://img.shields.io/github/contributors/atick-faisal/NDDNet?colorA=363a4f&colorB=a6da95&style=for-the-badge"></a>
 </p>
