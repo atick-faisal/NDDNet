@@ -22,16 +22,20 @@ NDDNet
 The TensorFlow implementation of the architecture can be found [here](src/models/model.py).
 <p align="center">
   <img src="Network.svg" />
+  Figure: The proposed network architecture. The network is composed of two parallel parts for processing the vGRF signals and the gait-cycle parameters. (a) The entire network architecture. (b) The ConvMixer block architecture.
 </p>
+
+
 
 ### Dependencies
 ```
-  Numpy
-  Pandas
-  Scikit-Learn
-  TensorFlow
-  WFDB
-  Rich
+  numpy
+  pandas
+  scikit-learn
+  tensorflow
+  wfdb
+  tsfel
+  rich
 ```
 
 ### Dataset
