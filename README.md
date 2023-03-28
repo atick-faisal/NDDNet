@@ -53,10 +53,9 @@ Pretrained weights are available in the `weights` directory. The weights were ge
 
 ### Cite This Work
 ```
-
-
-
-
+Faisal, M.A.A., Chowdhury, M.E.H., Mahbub, Z.B. et al. 
+NDDNet: a deep learning model for predicting neurodegenerative diseases from gait pattern. 
+Appl Intell (2023). https://doi.org/10.1007/s10489-023-04557-w
 ```
 
 <p align="center"><img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/footers/gray0_ctp_on_line.svg?sanitize=true" /></p>
